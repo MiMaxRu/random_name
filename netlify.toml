@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  command = ""
+
+# Redirect index.html for single-page behavior if needed
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

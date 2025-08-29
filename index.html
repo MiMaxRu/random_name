@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рандомайзер BYTE</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <!-- Восстановленный значок из первого варианта -->
+            <span class="badge">★</span>
+            <span class="brand-text">Рандомайзер</span>
+        </div>
+        <button id="themeToggle" class="icon-btn" aria-label="Перемкнути тему">🌙</button>
+    </header>
+
+    <div class="app">
+        <h1 class="title">
+            <span class="grad">Обираємо 3 імена</span>
+        </h1>
+    <p class="sub">Встав список (по одному імені в рядку) і натисни «Обрати <span id="pickCountLabel">3</span>»</p>
+
+                <div class="grid">
+            <!-- Ліва панель -->
+            <section class="panel">
+                <label class="note names-label">Імена (по одному в рядку):</label>
+                <textarea id="names" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="off"
+                    spellcheck="false" placeholder="Вставте список імен — по одному в рядку"></textarea>
+
+                                <label class="note" style="margin-top:12px">Кількість переможців:</label>
+                                <select id="winnersCount" class="select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+
+                                                <label class="note small-note prize-toggle" style="margin-top:10px">
+                                                    <input type="checkbox" id="usePrizes">
+                                                    <span class="toggle-ui" aria-hidden="true"><span class="knob"></span></span>
+                                                    <span class="toggle-label">Використовувати призи</span>
+                                                </label>
+                                                                <div id="prizesWrap">
+                                                                    <label class="note prizes-label" style="margin-top:8px">Призи (по одному в рядку, необов'язково):</label>
+                                                                    <textarea id="prizes" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="off"
+                                                                                    spellcheck="false" placeholder="Перший приз
+Другий приз
+Третій приз"></textarea>
+                                                                </div>
+
+                <div class="row actions">
+                    <button id="pickBtn" class="btn primary">Обрати</button>
+                    <button id="shuffleBtn" class="btn ghost">Перемішати</button>
+                    <button id="clearBtn" class="btn ghost">Очистити</button>
+                </div>
+
+                <div class="row second">
+                    <button id="copyWinnersBtn" class="btn soft" disabled>Скопіювати переможців</button>
+                    <button id="shareListBtn" class="btn soft">Поділитись списком</button>
+                    <span id="toast" class="toast" role="status" aria-live="polite"></span>
+                </div>
+
+                <p class="note small">Дублікати автоматично видаляються. Мінімум — 3 унікальні імена.</p>
+            </section>
+
+            <!-- Права панель -->
+            <section class="panel">
+                <div class="note">Розіграш:</div>
+                                <div class="slots">
+                                    <!-- Слоты генерируются скриптом -->
+                                </div>
+
+                <!-- Робот отображается только в модальном окне -->
+
+                <!-- Кнопка копирования победителей и призов (правый контейнер) -->
+                <div style="margin-top:10px">
+                    <button id="copyWinnersPrizesBtn" class="btn primary fullwidth" disabled>Скопіювати переможців і призи</button>
+                </div>
+
+                <div class="winners-wrap">
+                    <div class="winners" id="winners"></div>
+                </div>
+
+                <!-- История удалена по запросу пользователя -->
+            </section>
+        </div>
+
+        <footer class="footer">Зроблено з любов'ю 💙💛 Успіхів у розіграші!</footer>
+    </div>
+
+    <div class="burst" id="burst" aria-hidden="true"></div>
+
+        <!-- Результирующее модальное окно -->
+        <div id="resultsModal" class="modal" aria-hidden="true">
+            <div class="modal-overlay" data-close></div>
+            <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="resultsTitle">
+                <button class="modal-close" id="modalCloseBtn" aria-label="Закрити">✕</button>
+                <div class="modal-body">
+                    <div class="modal-robot">
+                        <img src="robot.png" alt="Робот" />
+                    </div>
+                    <div class="modal-results">
+                        <h2 id="resultsTitle">Переможці</h2>
+                        <div id="modalWinners" class="modal-winners"></div>
+                        <div class="modal-actions">
+                            <button id="modalCopyBtn" class="btn soft">Скопіювати</button>
+                            <button id="modalCloseBtn2" class="btn ghost" data-close>Закрити</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
