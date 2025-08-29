@@ -1,7 +1,7 @@
 (function(){
   const $ = s => document.querySelector(s);
   const namesEl = $('#names');
-  // s1,s2,s3 заменены на динамические слоты
+  // s1,s2,s3 замінено на динамічні слоти
   const pickBtn = $('#pickBtn');
   const shuffleBtn = $('#shuffleBtn');
   const clearBtn = $('#clearBtn');
@@ -107,7 +107,7 @@
   }
   tryLoadFromURL();
 
-  // Генерируем начальные слоты (по умолчанию 3)
+  // Генеруємо початкові слоти (за замовчуванням 3)
   function renderSlots(count){
     slotsContainer.innerHTML = '';
     for(let i=0;i<count;i++){
@@ -125,26 +125,26 @@
     }
   }
   renderSlots(Number(winnersCountEl?.value || 3));
-  // Установим начальный текст кнопки и заголовка
+  // Встановимо початковий текст кнопки і заголовка
   const initialCount = Number(winnersCountEl?.value || 3);
   pickBtn.textContent = `Обрати ${initialCount}`;
   const titleGrad = document.querySelector('.title .grad');
   titleGrad.textContent = `Обираємо ${initialCount} імена`;
-  // синхронизируем маленькую метку в заголовке (если есть)
+  // синхронізуємо маленьку мітку в заголовку (якщо є)
   const pickCountLabel = document.getElementById('pickCountLabel');
   if(pickCountLabel) pickCountLabel.textContent = String(initialCount);
 
-  // Перерисовываем слоты при смене количества победителей
+  // Перемальовуємо слоти при зміні кількості переможців
   winnersCountEl?.addEventListener('change', (e)=>{
     const n = Number(e.target.value || 3);
     renderSlots(n);
     pickBtn.textContent = `Обрати ${n}`;
-    // Обновляем заголовок немедленно
+  // Оновлюємо заголовок негайно
     titleGrad.textContent = `Обираємо ${n} імена`;
   if(pickCountLabel) pickCountLabel.textContent = String(n);
   });
 
-  // Показывать / скрывать блок с призами
+  // Показувати / приховувати блок з призами
   if(usePrizesEl){
     const prizesWrap = document.getElementById('prizesWrap');
     function togglePrizes(){
@@ -202,13 +202,13 @@
   }
 
   function addToHistory(picks){
-    // historyList может быть удалён — проверьте перед использованием
+  // historyList може бути видалений — перевірте перед використанням
     if(!historyList) return;
     const ts = new Date().toLocaleString();
     const li = document.createElement('li');
     li.textContent = `${ts}: ${picks.join(', ')}`;
     historyList.prepend(li);
-    // держим только 5 последних
+  // тримаємо лише 5 останніх
     while(historyList.children.length > 5){
       historyList.lastElementChild.remove();
     }
@@ -229,7 +229,7 @@
     pickBtn.disabled = true; shuffleBtn.disabled = true; clearBtn.disabled = true;
     rollingPool = list.length > 12 ? list.slice(0,12) : list;
 
-    // Рандомная выборка N победителей
+  // Випадкова вибірка N переможців
     const picks = (function(arr, n){
       const a = arr.slice();
       for(let i=a.length-1;i>0;i--){
@@ -239,7 +239,7 @@
       return a.slice(0,n);
     })(list, winnersCount);
 
-    // Получаем ноды слотов
+  // Отримуємо ноди слотів
     const slotSpans = Array.from(document.querySelectorAll('.slots .slot > span'));
     startSpin(slotSpans);
     slotSpans.forEach((node, idx)=> stopSpinAt(idx, picks[idx] || '—', slotSpans));
@@ -247,18 +247,18 @@
     setTimeout(()=>{
       confetti();
 
-  // Привязка призов (только если опция включена)
+  // Прив'язка призів (тільки якщо опція ввімкнена)
   const prizes = (usePrizesEl && !usePrizesEl.checked) ? [] : normalizeList(prizesEl.value);
   // Не заполняем метки призов в верхних слотах — сверху показываем только имена.
   // Призы остаются в нижних капсулах (.chip) и в модальном окне.
 
-      // Показать имя и (при наличии) приз в нижних капсулах; слоты выше показывают только имена
+  // Показати ім'я і (за наявності) приз у нижніх капсулах; слоти зверху показують лише імена
       winnersEl.innerHTML = picks.map((n, i)=>{
         const pr = prizes[i] ? `<span class="chip-prize">${escapeHtml(prizes[i])}</span>` : '';
         return `<span class="chip">🏆 ${escapeHtml(n)} ${pr}</span>`;
       }).join('');
   lastWinners = picks.slice();
-  // сохраняем соответствие призов для кнопки копирования в правом контейнере
+  // зберігаємо відповідність призів для кнопки копіювання у правому контейнері
   window.lastWinnersWithPrizes = picks.map((name, i)=>({ name, prize: prizes[i] || '' }));
   if(copyWinnersPrizesBtn) copyWinnersPrizesBtn.disabled = false;
       copyWinnersBtn.disabled = false;
@@ -288,7 +288,7 @@
       modalWinners.appendChild(card);
     });
 
-    // Показать модал
+  // Показати модальне вікно
     resultsModal.setAttribute('aria-hidden', 'false');
   }
 
