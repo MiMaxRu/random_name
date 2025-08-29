@@ -284,21 +284,21 @@ textarea{
 }
 
 /* =========================
-   Responsive tweaks
-   - Ensure modal fits on small viewports
-   - Make modal-content scrollable and touch friendly
-   - Stack modal body on small screens
-   - Improve slots/winners layout on narrow screens
+   Адаптивні правки
+   - Гарантуємо, що модальне вікно вміщується на малих екранах
+   - Робимо .modal-content прокручуваним і зручною прокруткою для сенсорних екранів
+   - На малих екранах складаємо тіло модалки вертикально
+   - Покращуємо відображення слотів і чіпів на вузьких екранах
    ========================= */
 
 .modal-content {
-  /* Allow the modal content to scroll when viewport is small */
+  /* Дозволити прокрутку вмісту модалки, коли висоти вікна недостатньо */
   max-height: calc(100vh - 48px);
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Small screens: stack modal content vertically and tighten paddings */
+/* Маленькі екрани: вертикальне розташування контенту модалки і менші відступи */
 @media (max-width: 720px) {
   .modal { align-items: flex-start; padding-top: 12px; }
   .modal-content { width: calc(100% - 20px); max-width: 100%; margin: 10px; border-radius: 12px; }
@@ -312,7 +312,7 @@ textarea{
   .winner-prize{ margin-left:0; margin-top:8px }
 }
 
-/* Very narrow screens: full width slots + smaller chips */
+/* Дуже вузькі екрани: слоти в одну колонку та менші чіпи */
 @media (max-width: 520px) {
   .slots { grid-template-columns: 1fr; gap:10px }
   .slot { height: auto; min-height:56px; padding:10px; font-size:14px }
@@ -323,19 +323,19 @@ textarea{
   .modal-winners{ max-height: calc(100vh - 200px) }
 }
 
-/* Reduce large images / spacing when viewport height is constrained */
+/* Зменшення великих зображень/відступів коли висота вьюпорту обмежена */
 @media (max-height: 520px) {
   .modal-body{ gap:8px; padding:10px }
   .modal-robot img{ width:72px }
   .modal-winners{ max-height: calc(100vh - 160px) }
 }
 
-/* Accessibility: prefer reduced motion still respected */
+/* Доступність: повага до prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .modal-body, .modal-winners, .slots { scroll-behavior: auto }
 }
 
-/* Minor tweak: ensure burst/toast don't overlap important controls on very small screens */
+/* Невелика підправка: щоб toast/ефекти не перекривали важливі елементи на дуже маленьких екранах */
 @media (max-width:420px){
   .toast{ font-size:13px; padding:8px 10px }
 }
