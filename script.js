@@ -9,7 +9,7 @@
   const prizesEl = $('#prizes');
   const usePrizesEl = $('#usePrizes');
   const copyWinnersBtn = $('#copyWinnersBtn');
-  const shareListBtn = $('#shareListBtn');
+//   const shareListBtn = $('#shareListBtn');
   const winnersEl = $('#winners');
   const burstEl = $('#burst');
   const toastEl = $('#toast');
@@ -162,16 +162,16 @@
     togglePrizes();
   }
 
-  shareListBtn.addEventListener('click', (e)=>{
-    ripple(e.currentTarget, e.offsetX, e.offsetY);
-    const list = normalizeList(namesEl.value);
-    if(list.length === 0){ toast('Список порожній'); return; }
-    const url = new URL(location.href.split('?')[0]);
-    url.searchParams.set('names', encodeURIComponent(list.join('|')));
-    const text = url.toString();
-    if(navigator.clipboard){ navigator.clipboard.writeText(text).then(()=>toast('Посилання скопійовано')); }
-    else { prompt('Скопіюй посилання:', text); }
-  });
+//   shareListBtn.addEventListener('click', (e)=>{
+//     ripple(e.currentTarget, e.offsetX, e.offsetY);
+//     const list = normalizeList(namesEl.value);
+//     if(list.length === 0){ toast('Список порожній'); return; }
+//     const url = new URL(location.href.split('?')[0]);
+//     url.searchParams.set('names', encodeURIComponent(list.join('|')));
+//     const text = url.toString();
+//     if(navigator.clipboard){ navigator.clipboard.writeText(text).then(()=>toast('Посилання скопійовано')); }
+//     else { prompt('Скопіюй посилання:', text); }
+//   });
 
   /* ---------- ЛОГІКА РОЗІГРАШУ ---------- */
   let timers = [];
@@ -365,8 +365,8 @@
   // Заповнити прикладом при першому запуску (або якщо порожньо після URL-імпорту)
   if(!namesEl.value.trim()){
     namesEl.value = [
-      'Анна','Богдан','Вікторія','Гліб','Даша','Єгор','Женя',
-      'Злата','Ігор','Кирило','Лєра','Марат','Надя','Олег','Поліна'
+    //   'Анна','Богдан','Вікторія','Гліб','Даша','Єгор','Женя',
+    //   'Злата','Ігор','Кирило','Лєра','Марат','Надя','Олег','Поліна'
     ].join('\n');
   }
 
